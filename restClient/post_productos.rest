@@ -1,0 +1,12 @@
+POST http://localhost:6001/productos
+Content-Type: application/json
+
+{
+  "nombre" : "iphone",
+  "categoria"   : "telefonia",
+	"fabricante"  : "Apple",
+	"descripcion" : "Super chachi telefono movil para lo que quieras!",
+	"imagen"      : "//.telefono/imagen",
+	"precio"      : 890.15,
+	"existencias" : 256
+}

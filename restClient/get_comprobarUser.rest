@@ -1,0 +1,4 @@
+// Extension REST client (tipo postman e imsomnia)
+
+GET http://localhost:6001/comprobarLogin?login=veronica
+
