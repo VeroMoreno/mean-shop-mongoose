@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core"
 import { Usuario } from '../entidades/usuario'
 import { HttpClient } from "@angular/common/http"
 import { Observable } from "rxjs"
-import { ConfiguracionUtil } from "../util/configuracionUtil"
-import { SessionService } from "./sessionService"
+import { ConfiguracionUtil } from "../../../util/configuracionUtil"
+import { SessionService } from "../../../servicios/sessionService"
 
 //providedIn: root, inyecta de manera automatica para que pueda usar ese servicio en otros ficheros
 @Injectable({ providedIn: 'root' })

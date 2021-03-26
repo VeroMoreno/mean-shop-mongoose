@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Usuario } from 'src/app/entidades/usuario'
+import { Usuario } from 'src/app/modulos/usuarios/entidades/usuario'
 import { SessionService } from 'src/app/servicios/sessionService';
-import { UsuariosService } from 'src/app/servicios/usuariosService';
+import { UsuariosService } from 'src/app/modulos/usuarios/servicios/usuariosService';
 
 @Component({
   selector: 'app-registro',
@@ -25,7 +25,7 @@ export class RegistroComponent implements OnInit {
   public siguiente():void{
     this.sessionService.setItem("usuario",this.usuario)
     //Navega
-    this.router.navigateByUrl("/login/aceptacion")
+    this.router.navigateByUrl("/usuarios/aceptacion")
   }
 
   private idTimer
@@ -52,6 +52,5 @@ export class RegistroComponent implements OnInit {
       },
       error => console.log(error)
     )
-
   }
 }

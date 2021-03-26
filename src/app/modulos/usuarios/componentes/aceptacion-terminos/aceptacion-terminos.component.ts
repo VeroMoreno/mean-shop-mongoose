@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Usuario } from 'src/app/entidades/usuario';
+import { Usuario } from 'src/app/modulos/usuarios/entidades/usuario';
 import { SessionService } from 'src/app/servicios/sessionService';
-import { UsuariosService } from 'src/app/servicios/usuariosService';
+import { UsuariosService } from 'src/app/modulos/usuarios/servicios/usuariosService';
 
 @Component({
   selector: 'app-aceptacion-terminos',
@@ -29,7 +29,7 @@ export class AceptacionTerminosComponent implements OnInit {
 
       this.usuariosService.altaUsuario(usuario)
       .subscribe(
-        usuarioInsertado => this.router.navigateByUrl("/login"),
+        usuarioInsertado => this.router.navigateByUrl("/"),
         error => this.mensaje = "No se pudo registrar"
       )
     }
