@@ -56,3 +56,21 @@ exports.listarProductos = function(criterio){
       })
   })
 }
+
+//Los usuarios autenticados pueden buscar productos
+exports.buscarProducto = function(idProducto){
+  return new Promise(function(resolve, reject){
+      Producto.findById(idProducto)
+      .then( productoEncontrado => {
+          if(!productoEncontrado){
+              reject({ codigo:404, mensaje:"No existe un producto con ese id"})
+              return
+          }
+          resolve(productoEncontrado)
+      })
+      .catch( error => {
+          console.log(error)
+          reject({ codigo:500, mensaje:'¡Error en la base de datos!'})
+      })
+  })
+}
