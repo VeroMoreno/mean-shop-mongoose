@@ -17,7 +17,7 @@ import { TiendaModule } from './modulos/tienda/tiendaModule';
   declarations: [
     AppComponent,
     CabeceraComponent,
-    PieComponent
+    PieComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +25,8 @@ import { TiendaModule } from './modulos/tienda/tiendaModule';
     HttpClientModule,               // para la conexion
     ReactiveFormsModule,
     RouterModule.forRoot(AppModule.rutasPrimerRouterOutlet),
-    UsuariosModule    // para los router outlet
+    UsuariosModule,
+    TiendaModule    // para los router outlet
   ],
   providers: [
     //Para registrar un interceptor HTTP:
@@ -42,6 +43,11 @@ export class AppModule {
     public static rutasPrimerRouterOutlet = [
       {
         path      : '',
+        redirectTo: '/usuarios/login',
+        pathMatch : 'full'
+      },
+      {
+        path      : 'usuarios',
         component : CommonLoginComponent,
         children  : UsuariosModule.rutasMaquetacionLogin
       },

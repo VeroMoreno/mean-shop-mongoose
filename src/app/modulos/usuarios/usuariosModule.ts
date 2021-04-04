@@ -28,7 +28,6 @@ import { RegistroComponent } from "./componentes/registro/registro.component";
     ]
   })
 export class UsuariosModule {
-
     //Estas son las rutas para el router outlet que hay en MaquetacionLoginComponent
     public static rutasMaquetacionLogin = [
         {
