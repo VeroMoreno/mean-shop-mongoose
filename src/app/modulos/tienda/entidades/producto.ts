@@ -1,4 +1,7 @@
 export class Producto {
+  reduce(arg0: (acu: any, articulo: any) => any, arg1: number): void {
+    throw new Error('Method not implemented.');
+  }
   public constructor(
       public _id         : string = null,
       public nombre      : string = null,
