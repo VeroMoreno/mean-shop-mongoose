@@ -5,9 +5,9 @@
   <h6 class="card-title">{{producto.fabricante}}</h6>
   <p class="card-text">{{ producto.descripcion.substring(0,200)}}...</p>
 
-  <div class="row">
-      <h4 class="col-8">{{producto.precio}} €</h4>
-      <button class="btn btn-info col-4" (click)="comprar()">Comprar</button>
+  <div>
+      <h4 class="col-12 text-right">{{producto.precio}} €</h4>
+      <button class="btn btn-info col-12" (click)="comprar()">Comprar</button>
   </div>
   </div>
 </div>

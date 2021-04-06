@@ -1,11 +1,11 @@
-<div class="card mt-4">
+<div class="card mt-4 bg-dark">
 
   <div class="row">
     <div class="col-3">
-      <img class="card-img-top" src="https://picsum.photos/300/200?random={{detalle.producto._id}}" alt="Card image">
+      <img class="card-img-top" src="https://picsum.photos/300/300?random={{detalle.producto._id}}" alt="Card image">
     </div>
 
-    <div class="col-9"> 
+    <div class="col-9 mt-3">
 
       <h4 class="card-title">{{detalle.producto.nombre}}</h4>
       <h6 class="card-title">{{detalle.producto.fabricante}}</h6>
@@ -15,15 +15,15 @@
         <div class="p-2 mr-auto">
           <span>{{detalle.precio}} €</span>
         </div>
-    
+
         <div class="p-2">
-          <button class="btn btn-primary ml-1 mr-1" (click)="disminuirCantidad()">-</button>
-          <span>{{detalle.cantidad}} </span>
-          <button class="btn btn-primary ml-1 mr-1" (click)="aumentarCantidad()">+</button>
-          <button class="btn btn-danger ml-1 mr-1" (click)="borrarDetalle()">Borrar</button>          
+          <button class="btn btn-info ml-1 mr-1" (click)="disminuirCantidad()">-</button>
+          <span class="ml-3 mr-2">{{detalle.cantidad}} </span>
+          <button class="btn btn-info ml-1 mr-1" (click)="aumentarCantidad()">+</button>
+          <button class="btn btn-secondary ml-1 mr-1" (click)="borrarDetalle()">Borrar</button>
         </div>
       </div>
-        
+
     </div>
 
   </div>

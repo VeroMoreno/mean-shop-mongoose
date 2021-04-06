@@ -40,6 +40,11 @@ public getJWT():string {
         })
     }
 
+    public logout():void {
+        // se elimina jwt y usuario
+        this.sessionService.clear()
+    }
+
     public modificarUsuario(usuario:Usuario):Observable<any> {
         // enviar peticion put, sustituir el usuario antiguo por el nuevo en el sessionService
         return new Observable( subscriber =>  {

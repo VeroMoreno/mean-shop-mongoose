@@ -1,4 +1,4 @@
-<!--div style="text-align:center"><img src="./img/topshop.png" alt="background" style="width:70%; margin-left:auto; margin-right:auto; display: block; width:300px"/></!--div-->
+<div style="text-align:center"><img src="./img/moongoshop.png" alt="background" style="width:70%; margin-left:auto; margin-right:auto; display: block; width:300px"/>
 
 # Mongooshop
 Small project with login, register, user authentication and user modification based in Mongo Express Angular & Node.js WITH MONGOOSE
@@ -21,7 +21,9 @@ Run `nodemon aplicacion.js` for a back dev server. Navigate to `https://localhos
    * Authentication
    * https
 * User Authentication
-* User modification
+* User Modification
+* Catalog
+* Cart
 
 ### Dependencies
 * validatorjs

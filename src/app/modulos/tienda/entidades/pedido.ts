@@ -27,6 +27,39 @@ export class Pedido {
       this.calcularTotal()
   }
 
+  //Disminuye la cantidad de un producto en 1
+  //Si no existe el producto en la cesta pues nada, que no falle
+  //Si existe y la cantidad queda a 0, que se elimina
+  public disminuirCantidad(producto:Producto):void {
+    let detalle = this.detalles.find( detalle => {
+      return detalle.producto._id == producto._id
+    })
+    if(!detalle) {
+      return
+    }
+    detalle.cantidad -= 1
+    if (detalle.cantidad == 0) {
+      this.eliminarDetalle(producto)
+    }
+    this.calcularTotal
+  }
+
+  //Elimina el detalle que contiene el producto recibido
+  public eliminarDetalle(producto:Producto) {
+    for (let i = 0; i < this.detalles.length; i++) {
+      if (this.detalles[i].producto._id == producto._id) {
+        this.detalles.splice(i,1)
+        this.calcularTotal()
+        break
+      }
+    }
+  }
+
+  public vaciarCesta() {
+    this.detalles = []
+    this.calcularTotal()
+  }
+
   private calcularTotal():void {
     /*return this.detalles.reduce((total, detalle) => {
       return total += detalle.precio * detalle.cantidad;

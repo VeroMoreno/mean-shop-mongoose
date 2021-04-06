@@ -12,6 +12,7 @@ export class RegistroComponent implements OnInit {
   public errorLoginRepetido:String
   public usuario:Usuario
   public confirmacionPw:string
+  public mensaje:string
 
   constructor(private router:Router,
     private sessionService:SessionService,

@@ -18,7 +18,7 @@
             </div>
             <input [(ngModel)]="usuario.pw" id="pw" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
         </div>
-        <div class="alert alert-danger">{{mensaje}}</div>
+        <div *ngIf="mensaje" class="alert alert-danger">{{mensaje}}</div>
 
     </div> <!--formulario-->
 
