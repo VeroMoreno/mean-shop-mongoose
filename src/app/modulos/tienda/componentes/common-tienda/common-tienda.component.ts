@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AutenticacionService } from 'src/app/modulos/usuarios/servicios/autenticacionService';
 
 @Component({
   selector: 'app-common-tienda',
@@ -6,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommonTiendaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private autenticacionService:AutenticacionService, private router:Router) {
+    if (!autenticacionService.getUsuario()) {
+      router.navigateByUrl("/usuarios/login")
+    }
+  }
 
   ngOnInit(): void {
   }

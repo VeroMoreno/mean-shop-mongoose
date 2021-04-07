@@ -7,6 +7,7 @@ import { CatalogoComponent } from "./componentes/catalogo/catalogo.component";
 import { CestaComponent } from "./componentes/cesta/cesta.component";
 import { CommonTiendaComponent } from "./componentes/common-tienda/common-tienda.component";
 import { DetallePedidoComponent } from "./componentes/detallePedido/detallePedido.component";
+import { ConfirmacionCompraComponent } from "./componentes/confirmacion-compra/confirmacion-compra.component";
 import { MenuComponent } from "./componentes/menu/menu.component";
 import { ProductoComponent } from "./componentes/producto/producto.component";
 
@@ -17,6 +18,7 @@ import { ProductoComponent } from "./componentes/producto/producto.component";
       CatalogoComponent,
       ProductoComponent,
       DetallePedidoComponent,
+      ConfirmacionCompraComponent,
       CommonTiendaComponent
     ],
     imports: [
@@ -43,6 +45,10 @@ export class TiendaModule {
     {
       path      : 'cesta',
       component : CestaComponent
+    },
+    {
+      path      : 'compra',
+      component : ConfirmacionCompraComponent
     }
   ]
 }

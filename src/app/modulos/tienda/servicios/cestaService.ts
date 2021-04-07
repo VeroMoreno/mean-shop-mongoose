@@ -4,12 +4,17 @@ import { Injectable } from "@angular/core";
 import { SessionService } from "src/app/servicios/sessionService";
 import { AutenticacionService } from "../../usuarios/servicios/autenticacionService";
 import { Pedido } from "../entidades/pedido";
+import { HttpClient } from "@angular/common/http";
+import { ConfiguracionUtil } from "src/app/util/configuracionUtil";
+import { Observable } from "rxjs";
 
 //que estén relacionados con la cesta/carrito de la compra
 @Injectable({ providedIn: 'root' })
 export class CestaService {
 
-    public constructor(private sessionService:SessionService, private autenticacionService:AutenticacionService) {
+    public constructor(private sessionService:SessionService,
+        private autenticacionService:AutenticacionService,
+        private httpClient:HttpClient) {
 
     }
     public getCesta():Pedido {
@@ -32,5 +37,19 @@ export class CestaService {
             this.sessionService.setItem(nombreCesta, cesta, true)
         }
         return cesta
+    }
+
+    public guardarCesta(cesta:Pedido):Observable<any> {
+        return this.httpClient.post(ConfiguracionUtil.urlServidor + "/pedidos", cesta)
+    }
+
+    public listarCesta() {
+    }
+
+    public borrarCesta() {
+    }
+
+    // depois...
+    public seleccionarCesta() {
     }
 }

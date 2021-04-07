@@ -10,6 +10,9 @@ export class Pedido {
       public estado   : string = null,
       public total    : number = null,
       public usuario  : Usuario = null,
+      public dirEntrega  : String = null,
+      public formaPago   : String = null,
+      public fechaEntrega: String = null,
       public detalles : DetallePedido[] = []
   ) {}
 

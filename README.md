@@ -45,3 +45,14 @@ npm link mongodb
 
 #### restClient
 Include calls to check endpoints
+
+
+#### Cestas/pedidos
+- Componer una esta (angular)
+- guardar cestas
+- listar cestas
+   -los usuarios pueden hacer sus cestas
+- borrar cestas
+- seleccionar cestas
+- "comprar" cesta
+   - proceso en el que se emite factura, y se prepara un envio a partir de una cesta/pedido
