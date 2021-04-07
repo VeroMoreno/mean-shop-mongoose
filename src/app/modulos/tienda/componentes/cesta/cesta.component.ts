@@ -10,7 +10,7 @@ import { CestaService } from '../../servicios/cestaService';
 export class CestaComponent implements OnInit {
 
   public cesta:Pedido
-  public mensaje:string = null
+  public mensaje:string = ""
 
   constructor(private cestaService:CestaService, private router:Router) {
     this.cesta = cestaService.getCesta()
@@ -31,12 +31,10 @@ export class CestaComponent implements OnInit {
     }
     this.cestaService.guardarCesta(this.cesta)
     .subscribe(
-      respuesta => {
+      () => {
         console.log("cesta guardada")
       },
-      error => {
-        this.mensaje = "Hubo un error al guardar la cesta"
-      }
+      error => this.mensaje = error.mensaje
     )
   }
 
