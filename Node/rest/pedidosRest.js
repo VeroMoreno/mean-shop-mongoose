@@ -14,7 +14,8 @@ exports.router = router
 
 function insertarPedido(request, response) {
   let pedido = request.body
-  negocioPedidos.insertarPedido(pedido, request.autoridad)
+  console.log("pedido rest", pedido)
+  negocioPedidos.insertarPedido(pedido)
   .then(pedidoInsertado => {
       response.statusCode = 201;
       response.json(pedidoInsertado)

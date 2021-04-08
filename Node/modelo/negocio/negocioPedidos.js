@@ -5,11 +5,11 @@ exports.insertarPedido = (pedido) => { // autoridad
     /*if (autoridad.rol != 'ADMIN') {
         reject({ codigo: 403, mensaje: "Solo los administradores pueden insertar productos" });
     }*/
-    delete pedido._id
-    if(pedido.detalles.length) {
+    if(pedido.detalles.length == 0) {
       reject({ codigo:400, mensaje: "Este pedido no tiene detalles" })
         return
     }
+    delete pedido._id
     let pedidoMG = new Pedido(pedido)
     pedidoMG.save()
     .then(pedidoInsertado => {

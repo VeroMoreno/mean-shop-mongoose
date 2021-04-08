@@ -3,7 +3,7 @@ let mongoose = require('mongoose')
 let Producto = require('./producto').Producto
 
 let esquemaPedido = new mongoose.Schema({
-  _id       : ObjectID,
+  // _id       : ObjectID,
   codigo   : String,
   fecha    : String,
   estado   : String,
@@ -11,7 +11,7 @@ let esquemaPedido = new mongoose.Schema({
   dirEntrega: String,
   formaPago : String,
   fechaEntrega: String,
-  // Si queremos un subconjunto de las propiedades
+  // Si queremos un subconjunto de las propiedades del usuario
   usuario: {
    //  _id       : ObjectID,
     login     : String,
