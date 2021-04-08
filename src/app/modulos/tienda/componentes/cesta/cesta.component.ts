@@ -13,14 +13,22 @@ export class CestaComponent implements OnInit {
   public mensaje:string = ""
 
   constructor(private cestaService:CestaService, private router:Router) {
-    this.cesta = cestaService.getCesta()
+    // asi era antes --> this.cesta = cestaService.getCesta()
+    /* El que quiere la cesta recibe un BehavieurSubject al que se suscribe
+    para ir recibiendo la cesta cada vez que cambie */
+    console.log("Recibiendo una nueva cesta en CestaComponent")
+    cestaService
+    .getCesta()
+    .subscribe(
+      cesta =>  this.cesta = cesta
+    )
   }
 
   ngOnInit(): void {
   }
 
   public vaciarCesta():void {
-    this.cesta.vaciarCesta()
+    this.cestaService.nuevaCesta()
   }
 
   public guardar():void {

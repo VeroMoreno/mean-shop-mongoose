@@ -11,7 +11,14 @@ export class ConfirmacionCompraComponent implements OnInit {
   public cesta:Pedido
 
   constructor(private cestaService:CestaService) {
-    this.cesta = cestaService.getCesta()
+    // this.cesta = cestaService.getCesta()
+    /* El que quiere la cesta recibe un BehavieurSubject al que se suscribe
+    para ir recibiendo la cesta cada vez que cambie */
+    cestaService
+    .getCesta()
+    .subscribe(
+      cesta => this.cesta = cesta
+    )
   }
 
   ngOnInit(): void {

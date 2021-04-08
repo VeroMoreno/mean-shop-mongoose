@@ -1,4 +1,5 @@
 export class Usuario {
+  sessionService: any;
   public constructor(
       public _id      : string = null,
       public nombre   : string = null,

@@ -71,6 +71,6 @@ export class Pedido {
     this.detalles.forEach(detalle => total += detalle.precio * detalle.cantidad)
     this.total = total
     // guardar provisional
-    localStorage.setItem("cesta_" + this.usuario._id, JSON.stringify(this))
+    // localStorage.setItem("cesta_" + this.usuario._id, JSON.stringify(this))
   }
 }
