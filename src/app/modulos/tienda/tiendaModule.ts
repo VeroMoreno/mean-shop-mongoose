@@ -10,6 +10,7 @@ import { DetallePedidoComponent } from "./componentes/detallePedido/detallePedid
 import { ConfirmacionCompraComponent } from "./componentes/confirmacion-compra/confirmacion-compra.component";
 import { MenuComponent } from "./componentes/menu/menu.component";
 import { ProductoComponent } from "./componentes/producto/producto.component";
+import { ListadoPedidosComponent } from "./componentes/listado-pedidos/listado-pedidos.component";
 
 @NgModule({
     declarations: [
@@ -19,6 +20,7 @@ import { ProductoComponent } from "./componentes/producto/producto.component";
       ProductoComponent,
       DetallePedidoComponent,
       ConfirmacionCompraComponent,
+      ListadoPedidosComponent,
       CommonTiendaComponent
     ],
     imports: [
@@ -49,6 +51,10 @@ export class TiendaModule {
     {
       path      : 'compra',
       component : ConfirmacionCompraComponent
+    },
+    {
+      path      : 'pedidos',
+      component : ListadoPedidosComponent
     }
   ]
 }

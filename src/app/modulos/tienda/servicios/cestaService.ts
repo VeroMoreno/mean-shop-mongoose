@@ -7,6 +7,7 @@ import { Pedido } from "../entidades/pedido";
 import { HttpClient } from "@angular/common/http";
 import { ConfiguracionUtil } from "src/app/util/configuracionUtil";
 import { BehaviorSubject, Observable } from "rxjs";
+import { Usuario } from "../../usuarios/entidades/usuario";
 
 //que estén relacionados con la cesta/carrito de la compra
 @Injectable({ providedIn: 'root' })
@@ -14,12 +15,13 @@ export class CestaService {
 
     private subject:BehaviorSubject<Pedido>
     private nombreCesta:string
+    private usuario:Usuario
 
     public constructor( private sessionService:SessionService,
                         private autenticacionService:AutenticacionService,
                         private httpClient:HttpClient) {
-        let usuario = this.autenticacionService.getUsuario()
-        this.nombreCesta = "cesta_" + usuario._id
+        this.usuario = this.autenticacionService.getUsuario()
+        this.nombreCesta = "cesta_" + this.usuario._id
     }
 
     public getCesta():BehaviorSubject<Pedido> {
@@ -39,7 +41,7 @@ export class CestaService {
                 Object.setPrototypeOf(cesta, Pedido.prototype)
             } else {
                 cesta = new Pedido()
-                cesta.usuario = this.autenticacionService.getUsuario()
+                cesta.usuario = this.usuario
                 this.sessionService.setItem(this.nombreCesta, cesta, true)
             }
             this.subject = new BehaviorSubject(cesta)
@@ -72,7 +74,7 @@ export class CestaService {
 
     public nuevaCesta():void {
         let cesta = new Pedido()
-        cesta.usuario = this.autenticacionService.getUsuario()
+        cesta.usuario = this.usuario
         this.setCesta(cesta)
     }
 
@@ -112,7 +114,8 @@ export class CestaService {
         return this.httpClient.put(ConfiguracionUtil.urlServidor + "/pedidos/" + cesta._id, cesta)
     }
 
-    public listarCesta() {
+    public listarCestas():Observable<any> {
+        return this.httpClient.get(ConfiguracionUtil.urlServidor+`/usuarios/${this.usuario._id}/pedidos`)
     }
 
     public borrarCesta() {

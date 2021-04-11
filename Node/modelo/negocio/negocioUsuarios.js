@@ -33,6 +33,8 @@ exports.buscarPorLoginYPw = function(login, pw){
           reject({codigo:404, mensaje: "Autentication: No existe un usuario con esas credenciales!"})
           return
         }
+        /* Aque el usuario tiene pw, se lo quitamos porque a nadie le interesa */
+        delete usuario.pw
         resolve(usuario)
       })
       .catch(error => {
