@@ -10,6 +10,8 @@ const mongoDBUtil = require('./util/MongoDBUtil')
 const usuariosRouter = require('./rest/usuariosRest').router
 const productosRouter = require('./rest/productosRest').router
 const pedidosRouter = require('./rest/pedidosRest').router
+const comprasRouter   = require('./rest/comprasRest').router
+
 const authRouter = require('./autenticacion/authRouter').router
 const interceptorJWT = require('./autenticacion/interceptorJWT').interceptorJWT
 
@@ -58,6 +60,7 @@ function arrancarServidor(){
     app.use(usuariosRouter)
     app.use(productosRouter)
     app.use(pedidosRouter)
+    app.use(comprasRouter)
     //Quitamos la publicidad
     app.disable('x-powered-by')
     console.log("Arrancando el servidor...")

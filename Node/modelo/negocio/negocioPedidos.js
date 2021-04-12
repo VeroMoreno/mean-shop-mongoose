@@ -54,6 +54,13 @@ exports.modificarPedido = (pedido, autoridad) => {
   })
 }
 
+exports.borrarPedido = function(idPedido, autoridad){
+  return new Promise(function(resolve, reject){
+      Pedido.findOneAndRemove({ _id:idPedido, "usuario._id":autoridad._id })
+  })
+}
+
+
 exports.listarPedidosUsuario = (id, autoridad) => {
   return new Promise((resolve, reject) => {
     console.log("id", id)

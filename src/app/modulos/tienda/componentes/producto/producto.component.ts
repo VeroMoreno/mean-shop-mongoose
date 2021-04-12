@@ -15,9 +15,9 @@ export class ProductoComponent implements OnInit {
   private cesta:Pedido
 
   constructor(private cestaService:CestaService) {
-    cestaService
-    .getCesta()
-    .subscribe( cesta => this.cesta = cesta )
+    this.cestaService
+    .getCesta() //Devuelve el subject
+    .subscribe( cesta => this.cesta=cesta ) //Se subscribe al subject
   }
 
   ngOnInit(): void {
