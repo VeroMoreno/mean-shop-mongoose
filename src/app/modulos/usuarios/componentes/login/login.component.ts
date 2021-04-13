@@ -15,7 +15,8 @@ export class LoginComponent implements OnInit {
     private autenticacionService:AutenticacionService,
     private router:Router,
     ) {
-this.usuario = new Usuario()
+    console.log("creando LOGIN COMPONENT")
+    this.usuario = new Usuario()
 }
 
   ngOnInit(): void {

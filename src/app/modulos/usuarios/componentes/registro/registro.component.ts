@@ -30,9 +30,10 @@ export class RegistroComponent implements OnInit {
   }
 
   private idTimer
-  public programarTemporizador():void{
-    console.log(this.usuario.login)
-    if(this.idTimer){
+  // ???
+  public programarTemporizador():void {
+    // console.log("login", this.usuario.login)
+    if(this.idTimer) {
       clearTimeout(this.idTimer)
     }
     this.idTimer = setTimeout(this.comprobarLogin.bind(this), 300)

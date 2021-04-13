@@ -37,7 +37,7 @@ export class PerfilComponent implements OnInit {
 
   public guardar():void {
     this.formulario.markAllAsTouched()
-    console.log(this.formulario)
+    // console.log(this.formulario)
     if (this.formulario.invalid) {
       return
     }

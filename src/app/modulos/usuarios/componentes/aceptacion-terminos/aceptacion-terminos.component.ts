@@ -11,6 +11,7 @@ import { UsuariosService } from 'src/app/modulos/usuarios/servicios/usuariosServ
 export class AceptacionTerminosComponent implements OnInit {
   public acepta:boolean
   public mensaje:string
+
   constructor(
     private sessionService:SessionService,
     private usuariosService:UsuariosService,
@@ -29,8 +30,8 @@ export class AceptacionTerminosComponent implements OnInit {
 
       this.usuariosService.altaUsuario(usuario)
       .subscribe(
-        usuarioInsertado => this.router.navigateByUrl("/"),
-        error => this.mensaje = "No se pudo registrar"
+        () => this.router.navigateByUrl("/"),
+        error => this.mensaje = "No se pudo registrar - " + error
       )
     }
 }

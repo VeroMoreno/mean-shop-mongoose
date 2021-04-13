@@ -46,6 +46,9 @@
             [(ngModel)]="confirmacionPw"
             />
     </div>
+    <!--div *ngIf="usuario.pw !== '' && confirmacionPw !== usuario.pw">
+      <span class="text-danger">Password no coincide</span>
+    </div-->
   </div>
   <div class="form-group">
     <label class="control-label col-xs-2" for="correoE">Correo</label>

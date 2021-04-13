@@ -12,6 +12,7 @@ export class UsuariosService {
   public constructor(
     private httpClient:HttpClient,
     private sessionService:SessionService) {
+      console.log("cargando usuarios Service")
   }
 
   comprobarLogin(login: string):Observable<any> {
