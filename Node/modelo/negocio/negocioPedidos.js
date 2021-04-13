@@ -12,7 +12,7 @@ exports.insertarPedido = (pedido, autoridad) => { // autoridad
     }
     delete pedido._id
     // le asignamos un codigo y la fecha
-    pedido.codigo = Math.round(Data.now()/1000)
+    pedido.codigo = "PED-" + Math.round(Data.now()/1000)
     pedido.fecha = Date.now()
 
     let pedidoMG = new Pedido(pedido)
