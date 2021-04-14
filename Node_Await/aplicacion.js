@@ -77,8 +77,8 @@ function arrancarServidor(){
         key  : fs.readFileSync("./certificado/server.key"),
         cert : fs.readFileSync("./certificado/server.cert") 
     }
-    https.createServer(cert, app).listen(7000, function(){
-        console.log("Esperando peticiones https en el puerto 7000 (await)")
+    https.createServer(cert, app).listen(6001, function(){
+        console.log("Esperando peticiones https en el puerto 6001 (await)")
     })
   
 }

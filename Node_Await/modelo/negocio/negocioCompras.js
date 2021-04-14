@@ -12,7 +12,7 @@ let reglasPedido = {
 
 exports.comprar = function(pedido, autoridad){
 
-    return new Promise(function(resolve, reject){
+    return new Promise(async function(resolve, reject){
 
         //Validamos que tenga los datos necesarios
         if(!validadorutil.validarObjeto(pedido, reglasPedido, reject)){
@@ -42,7 +42,7 @@ exports.comprar = function(pedido, autoridad){
             let promesaProducto = new Promise(async function(resolve, reject){
             try {
                 //Buscamos el producto
-                console.log("Buscando:"+detalle.producto.nombre)
+                console.log("Buscando:" + detalle.producto.nombre)
 
                 let productoEncontradoMG = await Producto.findById(detalle.producto._id)
 
@@ -76,16 +76,12 @@ exports.comprar = function(pedido, autoridad){
                 await productoEncontradoMG.save() //Esto es asíncrono
                 resolve()
             } catch (error) {
-                if(error.codigo){
-                    reject(error)
-                } else {
-                    console.log(error)
-                    reject( { codigo:500, mensaje:'¡Error con la base de datos!'} )
-                }
+                console.log(error)
+                reject( { codigo:500, mensaje:'¡Error con la base de datos!'} ) //Mal
             }
+            })
             //Añadimos la promesa al array
             arrayDePromesas.push(promesaProducto)
-            })
         }
 
         try {
@@ -112,7 +108,7 @@ exports.comprar = function(pedido, autoridad){
             //FIN
             resolve({ mensaje : "Pedido aceptado", factura:facturaInsertada })
         } catch (error) {
-            if(error.codigo){
+            if (error.codigo) {
                 reject(error)
             } else {
                 console.log(error)

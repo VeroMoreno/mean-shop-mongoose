@@ -12,6 +12,18 @@ export class CommonTiendaComponent implements OnInit {
     if (!autenticacionService.getUsuario()) {
       router.navigateByUrl("/usuarios/login")
     }
+    router.navigate([
+      "/tienda",
+      {
+        outlets : {
+          //clave: nombre del router outlet
+          //valor: ruta a aplicar
+          'primary' : ['catalogo'],
+          'izq'     : ['barraIzq'],
+          'der'     : ['resumenCesta']
+        }
+      }
+    ], { skipLocationChange : true })
   }
 
   ngOnInit(): void {

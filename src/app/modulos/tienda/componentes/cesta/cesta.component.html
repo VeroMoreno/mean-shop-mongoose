@@ -3,7 +3,7 @@
 <div *ngFor="let dp of cesta.detalles">
     <app-detallePedido [detalle]="dp" [cesta]="cesta"></app-detallePedido>
 </div>
-<div *ngIf="cesta.detalles.length!=0">
+<div *ngIf="cesta.detalles.length==0">
     <h2 class="text-center">No hay productos en la cesta</h2>
 </div>
 

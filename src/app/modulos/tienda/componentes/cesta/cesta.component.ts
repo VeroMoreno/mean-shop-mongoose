@@ -16,19 +16,15 @@ export class CestaComponent implements OnInit {
     // asi era antes --> this.cesta = cestaService.getCesta()
     /* El que quiere la cesta recibe un BehavieurSubject al que se suscribe
     para ir recibiendo la cesta cada vez que cambie */
-    console.log("Recibiendo una nueva cesta en CestaComponent")
     cestaService
     .getCesta()
-    .subscribe(
-      cesta =>  this.cesta = cesta
-    )
+      .subscribe( cesta => {
+        console.log("Recibiendo una nueva cesta en CestaComponent")
+        this.cesta = cesta
+      })
   }
 
   ngOnInit(): void {
-  }
-
-  public vaciarCesta():void {
-    this.cestaService.nuevaCesta()
   }
 
   public guardar():void {
@@ -53,6 +49,18 @@ export class CestaComponent implements OnInit {
       return
     }
     this.router.navigateByUrl("/tienda/compra")
+    this.router.navigate([
+      "/tienda",
+      {
+        outlets : {
+          'primary' : ['compra'],
+          'der'     : ['resumenCesta']
+        }
+      }
+    ], { skipLocationChange : true })
   }
 
+  public vaciarCesta():void {
+    this.cestaService.nuevaCesta()
+  }
 }

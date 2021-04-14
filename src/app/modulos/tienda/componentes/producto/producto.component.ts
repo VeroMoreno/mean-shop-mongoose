@@ -11,16 +11,18 @@ export class ProductoComponent implements OnInit {
   // este componente recibe el valor "producto" via selector
   @Input()
   public producto:Producto = new Producto()
-
+  // ???
   private cesta:Pedido
 
   constructor(private cestaService:CestaService) {
+    // console.log("estoy creando el producto para getCesta")
     this.cestaService
     .getCesta() //Devuelve el subject
-    .subscribe( cesta => this.cesta=cesta ) //Se subscribe al subject
+    .subscribe( cesta => this.cesta = cesta ) //Se subscribe al subject
   }
 
   ngOnInit(): void {
+    // console.log(this.producto)
   }
 
   public comprar():void {
@@ -37,5 +39,4 @@ export class ProductoComponent implements OnInit {
     this.cesta.addProducto(1, this.producto)
     this.cestaService.setCesta(this.cesta)
   }
-
 }

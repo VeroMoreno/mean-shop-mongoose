@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@Angular/common/http';
+import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { CabeceraComponent } from './componentes/common/cabecera/cabecera.component';
@@ -20,6 +21,7 @@ import { TiendaModule } from './modulos/tienda/tiendaModule';
     PieComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     FormsModule,                     // para el [(NgModel)]
     HttpClientModule,               // para la conexion

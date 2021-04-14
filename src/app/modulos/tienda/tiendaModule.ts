@@ -11,6 +11,9 @@ import { ConfirmacionCompraComponent } from "./componentes/confirmacion-compra/c
 import { MenuComponent } from "./componentes/menu/menu.component";
 import { ProductoComponent } from "./componentes/producto/producto.component";
 import { ListadoPedidosComponent } from "./componentes/listado-pedidos/listado-pedidos.component";
+import { ResumenCestaComponent } from "./componentes/resumen-cesta/resumen-cesta.component";
+import { BarraIzquierdaComponent } from "./componentes/barra-izquierda/barra-izquierda.component";
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -21,9 +24,12 @@ import { ListadoPedidosComponent } from "./componentes/listado-pedidos/listado-p
       DetallePedidoComponent,
       ConfirmacionCompraComponent,
       ListadoPedidosComponent,
-      CommonTiendaComponent
+      CommonTiendaComponent,
+      ResumenCestaComponent,
+      BarraIzquierdaComponent
     ],
     imports: [
+        CommonModule,
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
@@ -36,6 +42,9 @@ import { ListadoPedidosComponent } from "./componentes/listado-pedidos/listado-p
 
 export class TiendaModule {
   public static rutasCommonTienda = [
+      //
+      //Rutas para la segunda carpeta de la barra del navegador:
+      //
     {
       path      : 'perfil',
       component : PerfilComponent
@@ -55,6 +64,21 @@ export class TiendaModule {
     {
       path      : 'pedidos',
       component : ListadoPedidosComponent
-    }
+    },
+    //
+    //Rutas para los named router outlets
+    //
+    {
+      outlet    : 'izq',
+      path      : 'barraIzq',
+      component : BarraIzquierdaComponent
+      //pueden tener 'children'
+    },
+    {
+      outlet    : 'der',
+      path      : 'resumenCesta',
+      component : ResumenCestaComponent,
+      //pueden tener 'children'
+    },
   ]
 }

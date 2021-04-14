@@ -13,7 +13,7 @@ import { Usuario } from "../../usuarios/entidades/usuario";
 @Injectable({ providedIn: 'root' })
 export class CestaService {
 
-    private subject:BehaviorSubject<Pedido>
+    private subjectPedido:BehaviorSubject<Pedido>
     private nombreCesta:string
     private usuario:Usuario
 
@@ -33,9 +33,12 @@ export class CestaService {
         //-la creacion de la cesta
         //-guardar la cesta en el SessionService (local storage)
         //-la emisión del primer evento
-        if(!this.subject) {
+        if(!this.subjectPedido) {
             let cesta = this.sessionService.getItem(this.nombreCesta)
+            // ???
+            // console.log("cacacaca", cesta)
             if (cesta) {
+
                 /* el objeto se ha creado a partir de un JSON que tenemos en localstorage
                 se le ha hecho un parse y no tiene las funciones de la clase pedido */
                 Object.setPrototypeOf(cesta, Pedido.prototype)
@@ -44,9 +47,10 @@ export class CestaService {
                 cesta.usuario = this.usuario
                 this.sessionService.setItem(this.nombreCesta, cesta, true)
             }
-            this.subject = new BehaviorSubject(cesta)
+            // ???
+            this.subjectPedido = new BehaviorSubject(cesta)
         }
-        return this.subject
+        return this.subjectPedido
         // la Cesta estará en SessionService
         // let cesta = this.sessionService.getItem(nombreCesta)
         // Debemos añadir a la cesta las funciones que le faltan!
@@ -68,8 +72,14 @@ export class CestaService {
 
     //Esto guarda la cesta en el LOCAL STORAGE
     public setCesta(cesta) {
+        // ??? Cuando paso por este console log las funciones de Pedido ya andan existiendo no lo entiendo.
+        console.log("cestaConstructor", cesta)
+        if (cesta.constructor != Pedido){
+            Object.setPrototypeOf(cesta, Pedido.prototype)
+        }
         this.sessionService.setItem(this.nombreCesta, cesta, true)
-        this.subject.next(cesta)
+        // ??? con cesta dentro me deja flipao.
+        this.subjectPedido.next(cesta)
     }
 
     public nuevaCesta():void {
