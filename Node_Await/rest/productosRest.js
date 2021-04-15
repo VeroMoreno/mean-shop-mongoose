@@ -18,14 +18,14 @@ exports.router = router
 function listarProductos(request, response){
 
     //recoger del request el criterio de filtrado
-    let criterio = request.query.criterio
+    let criterio = JSON.parse(request.query.criterio)
 
     negocioProductos.listarProductos(criterio)
     .then( listadoProductos => response.json(listadoProductos) )
     .catch( error => {
         response.statusCode = error.codigo
         response.json(error)
-    })  
+    })
 
 }
 

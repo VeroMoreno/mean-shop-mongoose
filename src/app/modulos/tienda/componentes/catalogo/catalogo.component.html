@@ -26,7 +26,10 @@
                 <div class="form-group">
                     <label class="control-label col-xs-2" for="categoria">Categoría</label>
                     <div class="col-xs-8">
-                        <select class="form-control" id="categoria" [(ngModel)]="criterio.categoria"></select>
+                        <select class="form-control" id="categoria" [(ngModel)]="criterio.categoria">
+                            <option value="">Seleccione...</option>
+                            <option *ngFor="let c of categorias" value="{{c._id}}">{{c.nombre}}</option>
+                        </select>
                     </div>
                 </div>
 

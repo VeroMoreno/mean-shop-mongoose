@@ -11,10 +11,11 @@ const mongooseDButil = require('./util/MongooseDBUtil')
 const interceptorJWT = require('./autenticacion/interceptorJWT').interceptorJWT
 const authRouter     = require('./autenticacion/authRouter').router
 
-const usuariosRouter  = require('./rest/usuariosRest').router
-const productosRouter = require('./rest/productosRest').router
-const pedidosRouter   = require('./rest/pedidosRest').router
-const comprasRouter   = require('./rest/comprasRest').router
+const pedidosRouter    = require('./rest/pedidosRest').router
+const comprasRouter    = require('./rest/comprasRest').router
+const usuariosRouter   = require('./rest/usuariosRest').router
+const productosRouter  = require('./rest/productosRest').router
+const categoriasRouter = require('./rest/categoriasRest').router
 
 mongooseDButil.conectarBBDD()
 .then(arrancarServidor)
@@ -25,7 +26,7 @@ mongooseDButil.conectarBBDD()
 function arrancarServidor(){
 
     //Configuramos express
-    let app = express()   
+    let app = express()
     app.use(express.json({
         limit: '5mb' //Tamaño máximo del body que estamos dispuestos a leer
     }));
@@ -43,10 +44,10 @@ function arrancarServidor(){
 
         //Vamos a añadir estos headers a todas las respuestas que dedmos, sean options o no:
         response.header("Access-Control-Allow-Origin", "*")
-        response.header('Access-Control-Allow-Methods', 
+        response.header('Access-Control-Allow-Methods',
                         'GET,PUT,POST,DELETE,PATCH,OPTIONS')
-        response.header("Access-Control-Allow-Headers", 
-                        "Origin, X-Requested-With, Content-Type, Accept, Authorization")  
+        response.header("Access-Control-Allow-Headers",
+                        "Origin, X-Requested-With, Content-Type, Accept, Authorization")
 
         if(request.method.toUpperCase() == 'OPTIONS'){
             console.log("preflight detectado")
@@ -60,12 +61,13 @@ function arrancarServidor(){
 
     //Interceptor que comprueba que venga un JWT
     app.use(interceptorJWT)
-
     app.use(authRouter)
+
     app.use(usuariosRouter)
     app.use(productosRouter)
     app.use(pedidosRouter)
     app.use(comprasRouter)
+    app.use(categoriasRouter)
 
     //Quitamos la publicidad
     app.disable('x-powered-by')

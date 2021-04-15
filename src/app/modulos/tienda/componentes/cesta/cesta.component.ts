@@ -48,7 +48,7 @@ export class CestaComponent implements OnInit {
       this.mensaje = "No hay detalles en la cesta"
       return
     }
-    this.router.navigateByUrl("/tienda/compra")
+
     this.router.navigate([
       "/tienda",
       {
