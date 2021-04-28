@@ -14,7 +14,7 @@ export class CestaComponent implements OnInit {
 
   constructor(private cestaService:CestaService, private router:Router) {
     // asi era antes --> this.cesta = cestaService.getCesta()
-    /* El que quiere la cesta recibe un BehavieurSubject al que se suscribe
+    /* El que quiere la cesta recibe un BehaviorSubject al que se suscribe
     para ir recibiendo la cesta cada vez que cambie */
     cestaService
     .getCesta()
@@ -61,6 +61,6 @@ export class CestaComponent implements OnInit {
   }
 
   public vaciarCesta():void {
-    this.cestaService.nuevaCesta()
+    this.cestaService.resetCesta()
   }
 }

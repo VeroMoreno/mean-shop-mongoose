@@ -2,7 +2,7 @@
 const Categoria = require("../entidades/categoria").Categoria
 
 //Autorización: cualquier usuario autenticado puede listar las categorías
-exports.listarCategorias = function(autoridad){
+exports.listarCategorias = function(autoridad) {
     return new Promise(async function (resolve, reject){
         try {
             resolve(await Categoria.find())

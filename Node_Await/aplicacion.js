@@ -16,6 +16,7 @@ const comprasRouter    = require('./rest/comprasRest').router
 const usuariosRouter   = require('./rest/usuariosRest').router
 const productosRouter  = require('./rest/productosRest').router
 const categoriasRouter = require('./rest/categoriasRest').router
+const fabricantesRouter = require('./rest/fabricantesRest').router
 
 mongooseDButil.conectarBBDD()
 .then(arrancarServidor)
@@ -68,6 +69,7 @@ function arrancarServidor(){
     app.use(pedidosRouter)
     app.use(comprasRouter)
     app.use(categoriasRouter)
+    app.use(fabricantesRouter)
 
     //Quitamos la publicidad
     app.disable('x-powered-by')

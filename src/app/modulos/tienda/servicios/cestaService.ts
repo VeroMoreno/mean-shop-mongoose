@@ -33,22 +33,30 @@ export class CestaService {
         //-la creacion de la cesta
         //-guardar la cesta en el SessionService (local storage)
         //-la emisión del primer evento
-        if(!this.subjectPedido) {
-            let cesta = this.sessionService.getItem(this.nombreCesta)
-            // ???
-            // console.log("cacacaca", cesta)
-            if (cesta) {
 
+        /* this.subjectPedido ahora mismo vale undefined
+           !undefined es igual a true, por lo que siempre entra en esta condicion. */
+        if(!this.subjectPedido) {
+            console.log("!this.subjectPedido", !undefined)
+            // Obtenemos la cesta si hubiera
+            let cesta = this.sessionService.getItem(this.nombreCesta)
+            // que exista cesta o no depende si está almacenada en Local Storage de Application
+            if (cesta) {
+                // Pero si proto ya tiene FUNCIONES!
+                console.log("cesta JSON -", cesta)
+                console.log("--- Existe cesta, asi que hago setPrototypeOf")
                 /* el objeto se ha creado a partir de un JSON que tenemos en localstorage
                 se le ha hecho un parse y no tiene las funciones de la clase pedido */
                 Object.setPrototypeOf(cesta, Pedido.prototype)
             } else {
+                console.log("--- NO existe cesta, creo nuevo pedido y seteo la cesta")
                 cesta = new Pedido()
                 cesta.usuario = this.usuario
                 this.sessionService.setItem(this.nombreCesta, cesta, true)
             }
-            // ???
+            // POR AQUI SIEMPRE ESTÁ PASANDO.
             this.subjectPedido = new BehaviorSubject(cesta)
+            console.log("this.subjectPedido", this.subjectPedido)
         }
         return this.subjectPedido
         // la Cesta estará en SessionService
@@ -79,10 +87,12 @@ export class CestaService {
         }
         this.sessionService.setItem(this.nombreCesta, cesta, true)
         // ??? con cesta dentro me deja flipao.
+        // Requires an initial value and emits the current value to new subscriber
+        // subject necesita siempre el valor actual para el nuevo subscriptor?
         this.subjectPedido.next(cesta)
     }
 
-    public nuevaCesta():void {
+    public resetCesta():void {
         let cesta = new Pedido()
         cesta.usuario = this.usuario
         this.setCesta(cesta)
@@ -92,8 +102,10 @@ export class CestaService {
     public guardarCesta(cesta:Pedido):Observable<any>{
         let observable = null
         if(!cesta._id){
+            console.log("♥♥♥♥♥♥♥♥♥♥♥ INSERTARCESTA")
             observable = this.insertarCesta(cesta)
         } else {
+            console.log("♥♥♥♥♥♥♥♥♥♥♥ MODIFICARCESTA")
             observable = this.modificarCesta(cesta)
         }
         return observable
@@ -101,6 +113,7 @@ export class CestaService {
 
     public insertarCesta(cesta:Pedido):Observable<any>{
         console.log("insertarCesta cesta", cesta)
+        // router.post("/pedidos", insertarPedido)
         return new Observable( subscribers => {
             this.httpClient.post(ConfiguracionUtil.urlServidor + "/pedidos", cesta)
             .subscribe(
@@ -121,10 +134,12 @@ export class CestaService {
 
     public modificarCesta(cesta:Pedido):Observable<any>{
         console.log("modificarCesta cesta", cesta)
+        // router.put("/pedidos/:id", modificarPedido)
         return this.httpClient.put(ConfiguracionUtil.urlServidor + "/pedidos/" + cesta._id, cesta)
     }
 
     public listarCestas():Observable<any> {
+        // router.get("/usuarios/:idUsuario/pedidos", listarPedidosUsuario)
         return this.httpClient.get(ConfiguracionUtil.urlServidor+`/usuarios/${this.usuario._id}/pedidos`)
     }
 

@@ -12,6 +12,7 @@ export class CommonTiendaComponent implements OnInit {
     if (!autenticacionService.getUsuario()) {
       router.navigateByUrl("/usuarios/login")
     }
+    // en izq solo existe el componente barraIzq y en der solo existe el componente resumenCesta, si pones otro que no exista, no va a funcionar!!!
     router.navigate([
       "/tienda",
       {

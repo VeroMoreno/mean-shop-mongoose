@@ -1,8 +1,6 @@
-const Pedido = require("../entidades/pedido").Pedido
 const Producto = require("../entidades/producto").Producto
 const Factura = require("../entidades/factura").Factura
 const validadorutil = require("../../util/validadorUtil")
-const negocioPedidos = require("./negocioPedidos")
 
 let reglasPedido = {
     dirEntrega   : 'required',

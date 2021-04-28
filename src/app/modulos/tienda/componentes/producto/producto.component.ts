@@ -12,6 +12,17 @@ export class ProductoComponent implements OnInit {
   @Input()
   public producto:Producto = new Producto()
   // ???
+  /*
+    public: Es el modificador por defecto. Esto es así porque Javascript
+    no tiene estos modificadores y todo es público,
+    así que por consistencia es normal que sea el valor por defecto.
+
+    private: Los elementos (atributos y métodos) sólo
+    son visibles dentro de la clase.
+
+    protected: Los elementos sólo son visibles dentro de la clase
+    y en las clases que hereden directamente de ésta.
+ */
   private cesta:Pedido
 
   constructor(private cestaService:CestaService) {
@@ -30,10 +41,6 @@ export class ProductoComponent implements OnInit {
     // añadir un detalle a la cesta que incluya el producto
     // la cantidad será 1
     // el precio será de catalogo
-    // let cesta:Pedido = this.cestaService.getCesta()
-        //Esto es una putisima mierda
-    //let detalle:DetallePedido = new DetallePedido(1, this.producto.precio, this.producto)
-    //cesta.detalles.push(detalle)
 
     //En nuestra aplicación es la cesta, el pedido, el que sabe trabajar con los detalles
     this.cesta.addProducto(1, this.producto)

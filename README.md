@@ -45,13 +45,21 @@ npm link mongodb
 
 #### restClient
 Include calls to check endpoints
-
+#### 2 backends
+* Node
+```shell
+cd Node - nodemon aplicacion.js
+```
+* Node_Await
+```shell
+cd Node_Await - nodemon aplicacion.js
+```
 
 #### Cestas/pedidos
 - Componer una esta (angular)
 - guardar cestas
 - listar cestas
-   -los usuarios pueden hacer sus cestas
+   - los usuarios pueden hacer sus cestas
 - borrar cestas
 - seleccionar cestas
 - "comprar" cesta
