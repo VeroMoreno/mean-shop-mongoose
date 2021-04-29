@@ -8,6 +8,9 @@ let router = express.Router()
 
 
 router.post('/login', autenticarUsuario)
+//Para renovar el JWT es necesario un token válido!!!
+//Esta petición será interceptada por InterceptorAutenticacion
+router.post("/renovarJWT", renovarJWT)
 
 exports.router = router
 
@@ -23,25 +26,26 @@ function autenticarUsuario(request, response){
     .then( usuario => {
 
         let token = jwt.sign(
-            { 
-                _id    : usuario._id, 
-                login  : usuario.login, 
+            {
+                _id    : usuario._id,
+                login  : usuario.login,
                 rol    : usuario.rol,
-                movida : "ABCDEF"
-            }, 
-            JWTUtil.getClave(), 
-            { 
+                movida : "ABCDEF",
+                exp    : Math.floor(Date.now() / 1000) + 60,
+            },
+            JWTUtil.getClave(),
+            {
                 algorithm: 'HS512'
             }
         )
 
         //Colocando el jwt en la cabecera de la respuesta
         //response.setHeader('Authorization','Bearer '+token)
-        //response.setHeader('Access-Control-Expose-Headers', 'Authorization') 
+        //response.setHeader('Access-Control-Expose-Headers', 'Authorization')
 
         //Añadiremos el token al body de la respuesta
         //Le retiramos el pw al usuario
-        delete usuario.pw 
+        delete usuario.pw
         let respuesta = {
             usuario : usuario,
             JWT     : token
@@ -54,4 +58,23 @@ function autenticarUsuario(request, response){
         response.json(error)
     })
 
+}
+
+function renovarJWT(request, response){
+    let autoridad = request.autoridad
+    let token = jwt.sign(
+        {
+            _id: autoridad._id,
+            login: autoridad.login,
+            rol: autoridad.rol,
+            exp: Math.floor(Date.now() / 1000) + 60,
+        },
+        JWTUtil.getClave(),
+        { algorithm: 'HS512'}
+    )
+
+    let body = {
+        JWT : token
+    }
+    response.json(body)
 }

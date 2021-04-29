@@ -29,6 +29,25 @@ public getJWT():string {
             observable.subscribe(
                 data => {
                     console.log("datadata", data)
+
+                    //Sincronizamos los relojes entre el servidor y el navegador para averiguar a que hora loca caduca el JWT 
+                    console.log("====================================")
+                    let cargamento:any = JSON.parse(atob(data.JWT.split(".")[1]))
+                    console.log("Cargamento:",cargamento)
+
+                    let horaServidor  = cargamento.iat
+                    //10:00:00
+                    let horaExpiracion = cargamento.exp
+                    //11:00:00
+                    let horaNavegador = Math.floor(Date.now()/1000)
+                    //13:00:00
+                    let diferenciaHora = horaServidor-horaNavegador
+                    //10800
+                    let horaExpiracionJWT = horaExpiracion+diferenciaHora
+                    //14:00:00
+
+                    this.sessionService.setItem("horaExpiracionJWT", horaExpiracionJWT)
+
                     this.sessionService.setItem("JWT",data.JWT)
                     this.sessionService.setItem("usuario",data.usuario)
                     suscribirme.next()

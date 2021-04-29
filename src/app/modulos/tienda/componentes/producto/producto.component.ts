@@ -23,6 +23,8 @@ export class ProductoComponent implements OnInit {
     protected: Los elementos sólo son visibles dentro de la clase
     y en las clases que hereden directamente de ésta.
  */
+
+  // Desde la plantilla no se utiliza esta cesta para nada
   private cesta:Pedido
 
   constructor(private cestaService:CestaService) {

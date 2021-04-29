@@ -37,6 +37,7 @@ export class SessionService {
 
   public clear():void {
     //this.items = []
+    // Solo vacía el sessionStorage
     sessionStorage.clear()
   }
 }

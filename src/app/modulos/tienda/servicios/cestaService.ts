@@ -46,12 +46,15 @@ export class CestaService {
                 console.log("cesta JSON -", cesta)
                 console.log("--- Existe cesta, asi que hago setPrototypeOf")
                 /* el objeto se ha creado a partir de un JSON que tenemos en localstorage
-                se le ha hecho un parse y no tiene las funciones de la clase pedido */
+                se le ha hecho un parse y no tiene las funciones de la clase pedido
+                ponle todas las funciones que están en el modelo. */
                 Object.setPrototypeOf(cesta, Pedido.prototype)
+                console.log(cesta, "ahora es prototipo")
             } else {
                 console.log("--- NO existe cesta, creo nuevo pedido y seteo la cesta")
                 cesta = new Pedido()
                 cesta.usuario = this.usuario
+                // el true es para que lo guarde en localStorage
                 this.sessionService.setItem(this.nombreCesta, cesta, true)
             }
             // POR AQUI SIEMPRE ESTÁ PASANDO.
