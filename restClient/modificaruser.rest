@@ -1,8 +1,0 @@
-PUT http://localhost:6001/usuarios/604cf7e1018e1f0e34c49fe6
-Content-Type: application/json
-
-{
-  "nombre": "Veronica",
-  "login": "veronica",
-  "pw": "veronicamoreno",
-}
